@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="#" />
         <meta
           name="google-site-verification"
-          content="E9lcj_AjUzIMw0bkg-OhvDGqLV_Cqv7l_7slIq7kNSs"
+          content="04TX0Bxek4UVwNbtze7WSRD18zGYnABhRzXeTOvSRlM"
         />
       </head>
       <body className={inter.className}>
