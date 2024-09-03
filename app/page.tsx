@@ -28,8 +28,8 @@ import { Reveal } from "@/components/animations/reveal";
 import { Footer } from "@/components/ui/footer";
 import { useToast } from "@/hooks/use-toast";
 const FormSchema = z.object({
-  name: z.string().min(1, { message: "Pflichtfeld" }),
-  surname: z.string().min(1, { message: "Pflichtfeld" }),
+  firstName: z.string().min(1, { message: "Pflichtfeld" }),
+  lastName: z.string().min(1, { message: "Pflichtfeld" }),
   email: z.string().email({ message: "Keine gültige E-Mail" }),
   company: z.string(),
   message: z
@@ -137,8 +137,8 @@ export default function Home() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: "",
-      surname: "",
+      firstName: "",
+      lastName: "",
       email: "",
       company: "",
       message: "",
@@ -146,14 +146,37 @@ export default function Home() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    //console.log(data);
-    //integrieren
+    const {
+      firstName: firstName,
+      lastName: lastName,
+      email,
+      company,
+      message,
+    } = data;
 
-    toast({ title: "Nachricht konnte nicht gesendet werden." });
+    fetch("https://cliphubagency.de/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ firstName, lastName, email, company, message }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast({ title: "Nachricht wurde erfolgreich gesendet!" });
+        } else {
+          throw new Error("Fehler beim Senden der Nachricht");
+        }
+      })
+      .catch((error) => {
+        toast({
+          title: "Nachricht konnte nicht gesendet werden.",
+        });
+      });
   }
 
   function scrollToContact() {
-    const target = contactRef.current?.scrollIntoView({ behavior: "smooth" });
+    contactRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -211,18 +234,18 @@ export default function Home() {
                       <div className="grid md:grid-cols-2 items-center gap-4 gap-x-8">
                         <FormField
                           control={form.control}
-                          name="name"
+                          name="firstName"
                           render={({ field }) => (
                             <FormItem className="flex flex-col space-y-1.5">
                               <FormLabel
-                                htmlFor="name"
+                                htmlFor="firstName"
                                 className="text-background"
                               >
                                 Vorname *
                               </FormLabel>
                               <FormControl>
                                 <Input
-                                  id="name"
+                                  id="firstName"
                                   className="bg-foreground text-background"
                                   {...field}
                                 />
@@ -233,18 +256,18 @@ export default function Home() {
                         />
                         <FormField
                           control={form.control}
-                          name="surname"
+                          name="lastName"
                           render={({ field }) => (
                             <FormItem className="flex flex-col space-y-1.5">
                               <FormLabel
-                                htmlFor="surname"
+                                htmlFor="lastName"
                                 className="text-background"
                               >
                                 Nachname *
                               </FormLabel>
                               <FormControl>
                                 <Input
-                                  id="surname"
+                                  id="lastName"
                                   className="bg-foreground text-background"
                                   {...field}
                                 />
