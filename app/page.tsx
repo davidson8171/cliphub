@@ -73,7 +73,7 @@ export default function Home() {
 
     const basePopupCount = 15;
     const popupCount = Math.max(
-      8,
+      5,
       Math.floor((window.innerWidth / 1920) * basePopupCount)
     );
 
@@ -192,7 +192,7 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="bg-black min-h-screen flex justify-center pb-8"
+        className="bg-black min-h-screen flex justify-center"
         ref={contactRef}
       >
         <div className="pt-32 lg:pt-52 w-full xl:w-6/12 flex justify-center">

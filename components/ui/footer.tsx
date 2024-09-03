@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <div className="sticky top-[100vh] w-full flex justify-center bg-black pb-12 z-30">
+    <div className="sticky top-[100vh] w-full flex justify-center bg-black pb-12 z-30 pt-32 lg:pt-0">
       <div className="w-10/12 lg:w-6/12">
         <div className="flex flex-col md:flex-row justify-between space-y-4">
           <Link href="/">
