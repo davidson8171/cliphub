@@ -164,6 +164,7 @@ export default function Home() {
       .then((response) => {
         if (response.ok) {
           toast({ title: "Nachricht wurde erfolgreich gesendet!" });
+          form.reset();
         } else {
           throw new Error("Fehler beim Senden der Nachricht");
         }
