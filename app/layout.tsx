@@ -18,6 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
+      <head>
+        <link rel="shortcut icon" href="#" />
+        <meta
+          name="google-site-verification"
+          content="E9lcj_AjUzIMw0bkg-OhvDGqLV_Cqv7l_7slIq7kNSs"
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

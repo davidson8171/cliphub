@@ -114,7 +114,7 @@ export default function Home() {
         id: i,
         top,
         left,
-        viewCount: parseFloat((Math.random() * 999).toFixed(1)),
+        viewCount: parseFloat((Math.random() * 998 + 1).toFixed(1)),
         delay: Math.random() * 1000,
       });
     }
